@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Speech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-out;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .container input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome!</h1>
+    <p>Please enter your details:</p>
+    <input type="text" id="name" placeholder="Enter your name" />
+    <input type="number" id="age" placeholder="Enter your age" />
+    <button onclick="giveSpeech()">OK</button>
+    <div id="message" class="message"></div>
+</div>
+
+<script>
+    function giveSpeech() {
+        const name = document.getElementById("name").value;
+        const age = parseInt(document.getElementById("age").value);
+        const messageDiv = document.getElementById("message");
+        
+        if (!name || isNaN(age) || age <= 0) {
+            messageDiv.innerHTML = "Please enter valid details.";
+            return;
+        }
+        
+        let speech = "";
+        if (age < 25) {
+            speech = `Hey ${name}, you're still young! Keep pursuing your dreams and stay positive. Your future is bright!`;
+        } else {
+            speech = `Hey ${name}, you're doing great! But remember, time flies. Maybe it's time to start thinking about settling down. Get married, have fun, and create memories!`;
+        }
+
+        messageDiv.innerHTML = speech;
+        messageDiv.style.opacity = 0; // Reset opacity for animation
+        setTimeout(() => {
+            messageDiv.style.opacity = 1; // Trigger fade-in animation
+        }, 50);
+
+        // Clear inputs after speech
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+    }
+</script>
+
+</body>
+</html>
